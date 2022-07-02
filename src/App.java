@@ -10,30 +10,19 @@ public class App {
         //Create a new linked list object
         SinglyLinkedList l1 = new SinglyLinkedList();
 
-        //Start poplulating the linked list
-        l1.add(20);
-        l1.add(30);
+        populateList(l1);
         printList(l1);
-        
-        l1.addFirst(10);
+        printLength(l1);
+
+        l1.clear();
+
         printList(l1);
+        printLength(l1);
 
-        l1.addLast(40);
-        printList(l1);
 
-        l1.add(1, 99);
-        printList(l1);
 
-        try {
-            l1.add(7, 69);
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(e.getMessage());
-            System,out.println("The program will skip and continue...");
-        }
-
-        System.out.println("Length: " + l1.length());
         System.exit(0);
+
 
     }
 
@@ -49,7 +38,7 @@ public class App {
     /*
      * The methods populates the content of linked list with random data
      */
-    public void populateList(SinglyLinkedList list) {
+    public static void populateList(SinglyLinkedList list) {
         Random random = new Random();
         int size = random.nextInt(10) + 1;
         System.out.println("Adding data to the linked list...\n");
