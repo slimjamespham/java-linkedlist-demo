@@ -1,6 +1,11 @@
 ## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Welcome to my first demo on Github. This is just a practice using git and github that I have been learning.
+In this demo, I have implemented a Singly Linked List data structure by Java. The Linked List is implemented basic operations
+
+- Traversing the list.
+- Inserting an element to the list.
+- Deleting an element from the list.
 
 ## Folder Structure
 
