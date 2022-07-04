@@ -2,8 +2,7 @@
 
 Welcome to my first demo on Github. In this demo, I have just implemented a generic Singly Linked List data structure that can accept any non-primitive data types. The Linked List is implemented with some basic operations:
 
-- Updating the current length of the list
-- Traversing the list.
+- Calculating the current length of the list.
 - Inserting an element to the list.
 - Deleting an element from the list.
 
