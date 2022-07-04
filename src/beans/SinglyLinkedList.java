@@ -1,17 +1,17 @@
 package beans;
 /*
- * The class demonstrates a node in a data structure
+ * The class demonstrates a generic node.
  */
-class Node {
+class Node<T>{
     //Fields
-    double data;
-    Node nextNode;
+    T data;
+    Node<T> nextNode;
 
     /*
      * The default constructor
      */
     public Node() {
-        this.data = 0;
+        this.data = null;
         this.nextNode = null;
     }
 
@@ -19,18 +19,17 @@ class Node {
      * The overloaded constructor
      * @param data The data of a node to set
      */
-    public Node(double data) {
+    public Node(T data) {
         this.data = data;
         this.nextNode = null;
     }
 }
-
 /*
- * The class demonstrates a common data structure  Singly Linked List
+ * The class demonstrates a generic Singly Linked List
  */
-public class SinglyLinkedList {
+public class SinglyLinkedList<T> {
     //Field
-    private Node headNode;
+    private Node<T> headNode;
 
     /*
      * The default constructor
@@ -43,16 +42,8 @@ public class SinglyLinkedList {
      * The method returns the reference of the head node
      * @return the head node reference
      */
-    public Node getHeadNode() {
+    public Node<T> getHeadNode() {
         return this.headNode;
-    }
-
-    /*
-     * The method sets the reference of the head node
-     * @param headNode The head node reference to set
-     */
-    public void setHeadNode(Node headNode) {
-        this.headNode = headNode;
     }
 
     /*
@@ -60,16 +51,16 @@ public class SinglyLinkedList {
      * @param data The element to be inserted
      * @return true if the insert is done successfully
      */
-    public void add(double data) {
-        Node currentNode = this.headNode;
+    public void add(T data) {
+        Node<T> currentNode = this.headNode;
         if(this.headNode == null) {
-            headNode = new Node(data);
+            headNode = new Node<>(data);
         }
         else {
             while(currentNode.nextNode != null) {
                 currentNode = currentNode.nextNode;
             }
-            currentNode.nextNode = new Node(data);
+            currentNode.nextNode = new Node<>(data);
         }
     }
 
@@ -78,7 +69,7 @@ public class SinglyLinkedList {
      * @param data The element to be inserted
      * @return true if the insert is done successfully
      */
-    public void addLast(double data) {
+    public void addLast(T data) {
         this.add(data);
     }
 
@@ -88,7 +79,7 @@ public class SinglyLinkedList {
      * @param index The position to the element to be inserted
      * @param data The element to be inserted
      */
-    public void add(int index, double data) {
+    public void add(int index, T data) {
         if(index < 0 || index >= this.length())
             throw new ArrayIndexOutOfBoundsException("Error: Index is out of range");
             
@@ -97,12 +88,12 @@ public class SinglyLinkedList {
         }
         else {
             int counter = 0;
-            Node currentNode = this.headNode;
+            Node<T> currentNode = this.headNode;
             while(counter != index - 1) {
                 currentNode = currentNode.nextNode;
                 counter++;
             }
-            Node newNode = new Node(data);
+            Node<T> newNode = new Node<>(data);
             newNode.nextNode = currentNode.nextNode;
             currentNode.nextNode = newNode;
         }
@@ -114,8 +105,8 @@ public class SinglyLinkedList {
      * the beginning of the list.
      * @param data The element to be inserted
      */
-    public void addFirst(double data) {
-        Node tempNode = new Node(data);
+    public void addFirst(T data) {
+        Node<T> tempNode = new Node<>(data);
         tempNode.nextNode = this.headNode;
         this.headNode = tempNode;
     } 
@@ -132,10 +123,9 @@ public class SinglyLinkedList {
                                             "element from the empty list!");
         }
         else {    
-            Node currentNode = this.headNode;    
+            Node<T> currentNode = this.headNode;    
             this.headNode = currentNode.nextNode;
             currentNode.nextNode = null;
-            currentNode = null;
         }
         return status;
     }
@@ -147,7 +137,7 @@ public class SinglyLinkedList {
      */
     public boolean removeLast() {
         boolean status = false;
-        Node currentNode = this.headNode;
+        Node<T> currentNode = this.headNode;
         if(currentNode == null)
             throw new NullPointerException("Error: cannot remove an " +
                                             "element from the empty list!");
@@ -192,8 +182,8 @@ public class SinglyLinkedList {
         }
         
         else {
-            Node previousNode = this.headNode;
-            Node currentNode = previousNode.nextNode;
+            Node<T> previousNode = this.headNode;
+            Node<T> currentNode = previousNode.nextNode;
             int counter = 0;
             while(counter != (index - 1)) {
                 previousNode = previousNode.nextNode;
@@ -202,7 +192,6 @@ public class SinglyLinkedList {
             }
             previousNode.nextNode = currentNode.nextNode;
             currentNode.nextNode = null;
-            currentNode = null;
             status = true;
         }
         return status;
@@ -215,7 +204,7 @@ public class SinglyLinkedList {
      * @param data The first occurrence specified element to be deleted
      * @return true if the element exists in the linked list
      */
-    public boolean remove(double data) {
+    public boolean remove(T data) {
         boolean status = false;
         
         if(this.headNode == null) 
@@ -229,14 +218,13 @@ public class SinglyLinkedList {
         }
 
         else {
-            Node previousNode = this.headNode;
-            Node currentNode = previousNode.nextNode;
+            Node<T> previousNode = this.headNode;
+            Node<T> currentNode = previousNode.nextNode;
 
             while(currentNode != null) {
                 if(currentNode.data == data) {
                     previousNode.nextNode = currentNode.nextNode;
                     currentNode.nextNode = null;
-                    currentNode = null;
                     status = true;
                     break;
                 }
@@ -260,7 +248,7 @@ public class SinglyLinkedList {
      */
     public int length() {
         int length = 0;
-        Node currentNode = this.headNode;
+        Node<T> currentNode = this.headNode;
         //If the headNode is null, the linked list is empty
         if(this.headNode == null) 
             return 0;     
@@ -279,7 +267,7 @@ public class SinglyLinkedList {
      */
     public String toString() {
         StringBuilder string = new StringBuilder();
-        Node currentNode = this.headNode;
+        Node<T> currentNode = this.headNode;
 
         if(this.headNode == null)
             string.append ("The list is empty!");
