@@ -1,24 +1,32 @@
 import java.util.Random;
 import beans.SinglyLinkedList;
+import beans.Rectangle;
 
 /*
  * The program demonstrates essensial operations of 
  * the linked list data structure
  */
 public class App {
+    //Class Properties
+    private static SinglyLinkedList<Integer> integerList = new SinglyLinkedList<>();
+    private static SinglyLinkedList<String> stringList = new SinglyLinkedList<>();
+    private static SinglyLinkedList<Rectangle> rectangleList = new SinglyLinkedList<>();
+    
+    //The System-generated method
     public static void main(String[] args) {
         //Create a new linked list object
-        SinglyLinkedList l1 = new SinglyLinkedList();
+        integerList.add(100);
+        integerList.add(200);
+        integerList.add(300);
+        integerList.add(400);
+        
+        printList(integerList);
 
-        populateList(l1);
-        printList(l1);
-        printLength(l1);
-
-        l1.clear();
-
-        printList(l1);
-        printLength(l1);
-
+        stringList.add("HELLO");
+        stringList.add("JAVA");
+        stringList.add("WORLD");
+        stringList.remove("JAVA");
+        printList(stringList);
 
 
         System.exit(0);
@@ -31,26 +39,20 @@ public class App {
      * the linked list to the console
      * @param list The linked list reference
      */
-    public static void printLength(SinglyLinkedList list) {
+    public static <T> void printLength(SinglyLinkedList<T> list) {
         System.out.println("The length of the list is " + list.length());
     }
 
     /*
-     * The methods populates the content of linked list with random data
+     * The method prints the entire contents of the linked list.
      */
-    public static void populateList(SinglyLinkedList list) {
-        Random random = new Random();
-        int size = random.nextInt(10) + 1;
-        System.out.println("Adding data to the linked list...\n");
-        for(int i = 0; i < size; i++) {
-            list.add(random.nextInt(100));
-        }
-
-    }
-
-    public static void printList(SinglyLinkedList list) {
-        System.out.println("Printing the Singly Linked List...");
-        System.out.println(list);
+    public static <T> void printList(SinglyLinkedList<T> list) {       
+		System.out.println();
+		System.out.println("*****PRINTING THE LINKED LIST*****");
+		System.out.println("********* LIST'S SIZE: " + list.length() + " *********");
+		
+		System.out.print(list);
+		System.out.println("**********************************\n");	
     }
 
 
